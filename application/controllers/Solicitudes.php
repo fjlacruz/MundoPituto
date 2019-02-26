@@ -50,11 +50,7 @@ class Solicitudes extends CI_Controller
             $this->load->view('plantillas/menu');
             $this->load->view('tabla_solicitudes_pendientes', $data_categorias + $solicitudes_pendientes + $solicitudes_cerradas + $solicitudes_procesando + $data_regiones);
             $this->load->view('plantillas/footer');
-            }
-
-            
-            
-            
+            }       
         }
     }
     //====================== Funcion que carga los datos de las solicitudes pendientes en la tabla ===========================//

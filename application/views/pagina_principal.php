@@ -208,7 +208,7 @@ if(isset($_POST["Fenviado"])){
       <div class="col-md-8 login-form-1">
          <div align="left">
             <p>
-            <h3>Solicitudes Publicadas</h3>
+            <h3>Solicitudes Publicadas....</h3>
             </p>
          </div>
          <div class="input-group"> <span class="input-group-addon"><i class="fa fa-search"></i> Buscar</span>

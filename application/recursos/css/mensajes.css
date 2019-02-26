@@ -1,0 +1,13 @@
+#mensaje { 
+    margin-top:430px; 
+    margin-left:1000px;
+    position: absolute; 
+    z-index: 100;
+  }
+  #estilo
+  {
+    color:#FFF;background:#000;
+    padding: 20px;
+    border-radius:2px;
+  }
+} 

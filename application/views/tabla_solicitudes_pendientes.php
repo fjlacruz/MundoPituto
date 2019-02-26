@@ -291,9 +291,6 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
                   </div>
                </div>
                <div class="col-md-9 login-form-1" >
-
-
-
                   <form id="formulario2" method="post" class="form-horizontal" action="">
                      <div id="estilo2" align="center">
                         <h3>Generar</h3>
@@ -311,15 +308,6 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
                          </select>
                            </div>
                         </div>
-
-       <!--                  <div class="form-group">
-                         <label class="control-label col-sm-2">Sub-Categor&iacute;a:</label>
-                           <div class="col-sm-8">
-                            <select name="id_sub_categoria" id="id_sub_categoria"  class="form-control" >
-                              <option value="">Selecione...</option>                  
-                         </select>
-                           </div>
-                        </div> -->
                            <div class="form-group">
                          <label class="control-label col-sm-2">Tipo Solicitud:</label>
                            <div class="col-sm-8">
@@ -367,10 +355,6 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
                         </select>
                            </div>
                         </div>
-
-                       
-
-
                      <div class="form-group">
                         <label class="control-label col-sm-2" for="email">&nbsp;</label>
                         <div class="col-sm-8">

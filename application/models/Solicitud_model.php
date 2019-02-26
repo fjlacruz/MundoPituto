@@ -455,7 +455,7 @@ where id_usuario='{$id_usuarioP}'");
       left join t_usuarios us on (us.id_usuario=m.id_usuarios)
       left join t_usuarios up on (up.id_usuario=m.id_usuariop)
       left join t_solicitudes s on (s.id_solicitud=m.id_solicitud)
-      left join t_fotos f on (f.id_usuario=m.id_usuarios)
+      left join t_fotos f on (f.id_usuario=m.id_usuariop)
 
        where m.id_usuarios={$id_usuario} and m.estatus=2
 
@@ -476,7 +476,7 @@ where id_usuario='{$id_usuarioP}'");
       left join t_usuarios us on (us.id_usuario=m.id_usuarios)
       left join t_usuarios up on (up.id_usuario=m.id_usuariop)
       left join t_solicitudes s on (s.id_solicitud=m.id_solicitud)
-      left join t_fotos f on (f.id_usuario=m.id_usuariop)
+      left join t_fotos f on (f.id_usuario=m.id_usuarios)
 
        where m.id_usuariop={$id_usuario} and m.estatus=2
 

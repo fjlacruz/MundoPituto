@@ -207,9 +207,10 @@ class Solicitudes extends CI_Controller
     {
         
         extract($_POST);
-        //print_r($_FILES);exit();
+        //print_r($_POST);exit();
         $variablesSesion = $this->session->userdata('usuario');
         $id_usuario      = ($variablesSesion['id_usuario']);
+        $id_solicitud=31;
 
         $array_categoria=$this->input->post('categoria');
         $categoria= '{'.$array_categoria.'}';
@@ -225,6 +226,8 @@ class Solicitudes extends CI_Controller
              
         );
         $this->Solicitud_model->solicitud_guardar($arrayData);
+        //$this->Solicitud_model->buscar_pitutos($categoria, $id_solicitud);
+           
     }
 
     
@@ -490,11 +493,10 @@ class Solicitudes extends CI_Controller
      if($id_perfil==3){
      $vars_enviados['resultados'] = $this->Solicitud_model->mensajes_enviados_pituto($id_usuario);
      $vars_recibidos['resultados_recb'] = $this->Solicitud_model->mensajes_recibidos_pituto($id_usuario);
-     
+    
      }else{
      $vars_enviados['resultados'] = $this->Solicitud_model->mensajes_enviados_solicitante($id_usuario);
      $vars_recibidos['resultados_recb'] = $this->Solicitud_model->mensajes_recibidos_solicitante($id_usuario);
-
      }
     $this->load->view('tabla_msj_recibidos', $vars_enviados + $vars_recibidos);
     }

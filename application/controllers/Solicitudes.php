@@ -557,7 +557,7 @@ class Solicitudes extends CI_Controller
 
         $this->load->view('plantillas/administracion/header');
         $this->load->view('plantillas/menu');
-        $this->load->view('responder_mensajes_PS_view',$vars);
+        $this->load->view('responder_mensajes_SP_view',$vars);
          }
 
         

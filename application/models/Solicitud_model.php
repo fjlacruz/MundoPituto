@@ -597,11 +597,15 @@ where id_usuario='{$id_usuarioP}'");
     }
 
     public function upd_eliminado_solicitante($id_mensaje) {
+
        $query = $this->db->query("UPDATE t_mensajes set  eliminado_solicitante=0 where id_mensaje='{$id_mensaje}'");
     }
 
-    public function eliminar_mensaje_pituto($id_mensaje) {
-       $query = $this->db->query("UPDATE t_mensajes set  eliminado_pituto=0 where id_mensaje='{$id_mensaje}'");
+    public function consulata_media_valoracion($id_usuarioP) {
+       $query = $this->db->query("select (select SUM(puntuacion) FROM t_asignacion_solicitudes where id_usuario='{$id_usuarioP}')/
+       (select count(id_usuario) from t_asignacion_solicitudes where id_usuario='{$id_usuarioP}')as promedio
+        from t_asignacion_solicitudes where id_usuario='{$id_usuarioP}' limit 1");
+       return $query->result();
     }
     
     

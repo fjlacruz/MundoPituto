@@ -84,7 +84,7 @@
    $('.deleteButton').on('click', function() {
        var id = $(this).attr('data-id');
        $.ajax({
-           url: "<?php echo base_url() . 'Solicitudes/eliminar_mensaje_pituto/'; ?>" + id,
+           url: "<?php echo base_url() . 'Solicitudes/eliminar_mensaje/'; ?>" + id,
            method: 'POST'
    
        }).success(function(response) {

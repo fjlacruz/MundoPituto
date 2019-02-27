@@ -73,7 +73,7 @@ a:visited {
       <td align='right'><a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "'><strong>" . $mensaje . '....'. "</a></strong></td> 
       <td align='right'><a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "'><strong>" . $fecha_registro ."&nbsp;&nbsp;&nbsp;". $hora_registro. "</a></strong></td>
       <td align='justify' > 
-      <strong><a href='#' data-id='$resultado->id_mensaje' class='deleteButton'><span tooltip='Eliminar'><span class='fa  fa-trash'></span></span></a>
+      <strong><a href='#' data-id='$resultado->id_mensaje' class='deleteButton'><span tooltip='Eliminar'><span class='fa  fa-trash'></span></span></a></strong>
       <a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "' class=''><span tooltip='Responder'><span class='fa  fa-envelope'></span></span></a></strong>
       </td>
       </tr>";
@@ -94,7 +94,7 @@ a:visited {
    $('.deleteButton').on('click', function() {
        var id = $(this).attr('data-id');
        $.ajax({
-           url: "<?php echo base_url() . 'Solicitudes/eliminar_mensaje_solicitante/'; ?>" + id,
+           url: "<?php echo base_url() . 'Solicitudes/eliminar_mensaje/'; ?>" + id,
            method: 'POST'
    
        }).success(function(response) {

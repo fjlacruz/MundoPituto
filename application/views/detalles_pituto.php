@@ -186,7 +186,7 @@ $(document).ready(function(){
 <!-- ==================================== Galeria del Pituto ========================================================-->
                           <?php
                           if($verf_foto_galeria == 1){ ?>
-                           <i class="fa fa-camera"></i>  Ver Galer&iacutea
+                           <i class="fa fa-camera"></i>  Ver Galer&iacute;a
                            <div class="img-container" align="center" id="scroll2" style="width: 40%">
                               <div class="col-lg-3 col-md-4 col-xs-6 thumb" align="center">
                                  <?php
@@ -247,7 +247,7 @@ $(document).ready(function(){
                           ?>
                      <div class="col-sm-8">
                      <div class="panel panel-default">
-                     <div class="panel-heading"><strong>Informaci&oacute;n </strong></div>
+                     <div class="panel-heading"><strong>Informaci&oacute;n</strong></div>
                      <div class="panel-body">
                      <p align="justify"><strong>Nombres:</strong> <?php echo $resultado->nombres ?></br>
                      <strong>Tipo Persona:</strong><?php echo $resultado->tipo_persona?></br>
@@ -255,15 +255,74 @@ $(document).ready(function(){
                      <strong>Email:</strong> <?php echo $resultado->correo?></br>
                      <strong>Ubicaci&oacute;n:</strong> <?php echo $resultado->region_nombre?>/<?php echo $resultado->provincia_nombre?>/<?php echo $resultado->comuna_nombre?></br>
                      <strong>Conocimientos/habilidades: </br></strong><?php echo $resultado->conocimientos_habilidades?></br>
-                     <strong>Experiencia: </br></strong><?php echo $resultado->experiencia?></br>
+                     <strong>Experiencia: </br></strong><?php echo $resultado->experiencia?></br></br>
+                     <?php
+                        }
+                        ?>
+
+                        <?php
+                        foreach($valoracion as $resultado)
+                          {
+
+                          ?>
+
+                         <?php 
+                           $promedio=$resultado->promedio;
+                         if($promedio=='5'){
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               </div>";
+                               }elseif ($promedio=='4') {
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               </div>";
+                               }elseif($promedio=='3'){
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }elseif($promedio=='2'){
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }else{
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }
+
+                         ?>
+
+                        <strong>Valoraci&oacute;n Global: </br></strong><?php echo $promedio?></br>
+                        <?php
+                        }
+                        ?>
                      </p>
                      <br/><br/>  
                      </div>
                      </div>
                      </div>
-                     <?php
-                        }
-                        ?>
+                     
+                        
                      <div class="col-sm-12">&nbsp;</div>
                      <table class="table table-striped" align='justify'>
                      <thead>

@@ -34,6 +34,26 @@
    width:auto;
    }
 </style>
+<style type='text/css'>
+   img.ribbon {
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   right: 0;
+   border: 0;
+   cursor: pointer; }
+   .starrr {
+   display: inline-block; }
+   .starrr a {
+   font-size: 16px;
+   padding: 0 1px;
+   cursor: pointer;
+   color: #FFD119;
+   text-decoration: none; }
+   .checked {
+   color: orange;
+   }
+</style>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application/recursos/css/tooltip.css" />
 <script src="<?php echo base_url(); ?>application/scripts/ruta_solicitudes.js"></script>
 <script type="text/javascript">
@@ -163,7 +183,7 @@
                        <br/><br/>
                         <div class="col-sm-12">
                           <div class="panel panel-default">
-                           <div class="panel-heading"><strong>Detalles del Pituto...</strong></div>
+                           <div class="panel-heading"><strong>Detalles del Pituto</strong></div>
                             <div class="panel-body">
                               <?php
                                 foreach($result as $resultado)
@@ -179,7 +199,7 @@
                                    
 
                                   ?></div>
-                                 <div class="col-sm-12"><strong>Valoraciones:</strong></div>
+                                 <div class="col-sm-12"><strong>Valoracion Global:</strong></div>
                                  <div class="col-sm-12">
 
                                  <?php 
@@ -187,14 +207,58 @@
 
                                   $id_usuario=$resultado->id_usuario;
                                   $contenido = "";
-                                  $query = "SELECT * from t_asignacion_solicitudes where id_usuario='{$id_usuario}'";
+                                  $query = "select (select SUM(puntuacion) FROM t_asignacion_solicitudes where id_usuario='{$id_usuario}')/
+                                            (select count(id_usuario) from t_asignacion_solicitudes where id_usuario='{$id_usuario}')as promedio
+                                            from t_asignacion_solicitudes where id_usuario='{$id_usuario}' limit 1";
                                   $query=pg_query($query);
                                   while($row=pg_fetch_array($query,NULL,PGSQL_ASSOC) )
+                                    $promedio=$row['promedio'];
+                                  if($promedio=='5'){
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               </div>";
+                               }elseif ($promedio=='4') {
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               </div>";
+                               }elseif($promedio=='3'){
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }elseif($promedio=='2'){
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }else{
+                                $promedio = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }
                                   {
                                     echo '<div class="col-sm-12>"
                                           <table  class="table table-striped">
                                             <tr>
-                                                <td>'. ($row['valoracion']) . '</td>
+                                                <td>'. $promedio . '</td>
                                             </tr>
                                           </table>
                                           </div>';

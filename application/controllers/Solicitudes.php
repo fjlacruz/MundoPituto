@@ -308,12 +308,13 @@ class Solicitudes extends CI_Controller
 
             $data_foto['foto_usuario'] = $this->Consultas_usuarios_model->mostrar_foto_pituto($id_usuarioP);
             //print_r($data_foto);
-
+            $data_valoracion['valoracion'] = $this->Solicitud_model->consulata_media_valoracion($id_usuarioP);
+        
             $data_solicitud_usuario['solicitud_usuario'] = $this->Solicitud_model->consultar_id_solicitud_usuario($id_solicitud, $id_usuarioP);
             
             $this->load->view('plantillas/administracion/header');
             $this->load->view('plantillas/menu');
-            $this->load->view('detalles_pituto', $vars + $solicitudes_pendientes + $solicitudes_cerradas + $verficacion + $data_solicitud_usuario + $solicitudes_procesando+$data_foto+$verficacion_foto+$perfil_pituto +$data_galeria +$verficacion_galeria);
+            $this->load->view('detalles_pituto', $vars + $solicitudes_pendientes + $solicitudes_cerradas + $verficacion + $data_solicitud_usuario + $solicitudes_procesando+$data_foto+$verficacion_foto+$perfil_pituto +$data_galeria +$verficacion_galeria +$data_valoracion);
         }
     }
     
@@ -393,6 +394,8 @@ class Solicitudes extends CI_Controller
             $solicitudes_procesando['procesando'] = $this->Solicitud_model->cantidad_procesando($id_usuario);
             $vars['resultados']                   = $this->Solicitud_model->solicitudes_procesando($id_usuario);
             $data['result'] = $this->Solicitud_model->buscar_detalles_pitutos_asignado($id_solicitud);
+
+            //$data_valoracion['valoracion'] = $this->Solicitud_model->consulata_media_valoracion($id_usuarioP);
             //print_r($data);
 
             $this->load->view('plantillas/administracion/header');
@@ -522,14 +525,21 @@ class Solicitudes extends CI_Controller
     }
 
 
-    public function eliminar_mensaje_solicitante($id_mensaje)
+    public function eliminar_mensaje($id_mensaje)
     {
-     
-        $datos = $this->Solicitud_model->upd_eliminado_solicitante($id_mensaje);
+         $variablesSesion = $this->session->userdata('usuario');
+         $id_perfil = ($variablesSesion['id_perfil']);
+
+         if($id_perfil==3){
+            $datos = $this->Solicitud_model->upd_eliminado_pituto($id_mensaje);
+            echo json_encode($datos);
+         }else{
+             $datos = $this->Solicitud_model->upd_eliminado_solicitante($id_mensaje);
         echo json_encode($datos);
+         }
     }
 
-    public function eliminar_mensaje_pituto($id_mensaje)
+    public function eliminar_mensaje_pitutosss($id_mensaje)
     {
      
         $datos = $this->Solicitud_model->upd_eliminado_pituto($id_mensaje);

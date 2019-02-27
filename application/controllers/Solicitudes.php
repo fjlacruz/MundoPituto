@@ -539,13 +539,28 @@ class Solicitudes extends CI_Controller
     public function responder_msj_pituto_solicitante()
     {
         extract($_GET); 
+
+         $variablesSesion = $this->session->userdata('usuario');
+         $id_perfil = ($variablesSesion['id_perfil']);
+
+         if($id_perfil==3){
         $vars['resultados'] = $this->Solicitud_model->consultar_datos_mensaje($id_solicitud, $id_mensaje);
         $this->Solicitud_model->marcar_msj_leido($id_solicitud, $id_mensaje);
-        //print_r($vars); exit();
 
         $this->load->view('plantillas/administracion/header');
         $this->load->view('plantillas/menu');
         $this->load->view('responder_mensajes_PS_view',$vars);
+          
+         }else{
+        $vars['resultados'] = $this->Solicitud_model->consultar_datos_mensaje2($id_solicitud, $id_mensaje);
+        $this->Solicitud_model->marcar_msj_leido($id_solicitud, $id_mensaje);
+
+        $this->load->view('plantillas/administracion/header');
+        $this->load->view('plantillas/menu');
+        $this->load->view('responder_mensajes_PS_view',$vars);
+         }
+
+        
 
     }
 

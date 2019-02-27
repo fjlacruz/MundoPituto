@@ -554,6 +554,27 @@ where id_usuario='{$id_usuarioP}'");
         
     }
 
+    public function consultar_datos_mensaje2($id_solicitud,$id_mensaje)
+    {
+        $query = $this->db->query("select m.id_mensaje,m.id_usuarios,us.nombres as nombres_Solicitante, m.id_usuariop, up.nombres as nombres_pituto,
+      m.id_solicitud,s.descripcion_solicitud,s.categoria, m.mensaje, to_char(m.fecha_registro,'DD-MM-YYY') as fecha_registro,
+     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto
+
+       from t_mensajes m
+
+      left join t_usuarios us on (us.id_usuario=m.id_usuarios)
+      left join t_usuarios up on (up.id_usuario=m.id_usuariop)
+      left join t_solicitudes s on (s.id_solicitud=m.id_solicitud)
+      left join t_fotos f on (f.id_usuario=m.id_usuariop)
+
+       where m.id_solicitud={$id_solicitud} and m.estatus=2 and m.id_mensaje={$id_mensaje}
+
+       order by id_mensaje desc limit 1");
+        // si hay resultados
+        return $query->result();
+        
+    }
+
      public function marcar_msj_leido($id_solicitud, $id_mensaje)
     {
         

@@ -427,7 +427,7 @@ where id_usuario='{$id_usuarioP}'");
     {
         $query = $this->db->query("select m.id_mensaje,m.id_usuarios,us.nombres as nombres_Solicitante, m.id_usuariop, up.nombres as nombres_pituto,
       m.id_solicitud,s.descripcion_solicitud,s.categoria, substring(m.mensaje from 1 for 10) as mensaje, to_char(m.fecha_registro,'DD-MM-YYY') as fecha_registro,
-     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto
+     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto,m.leido
 
        from t_mensajes m
 
@@ -436,7 +436,7 @@ where id_usuario='{$id_usuarioP}'");
       left join t_solicitudes s on (s.id_solicitud=m.id_solicitud)
       left join t_fotos f on (f.id_usuario=m.id_usuariop)
 
-       where m.id_usuarios={$id_usuario} and m.estatus=1
+       where m.id_usuarios={$id_usuario} and m.estatus=1 and m.eliminado_solicitante=1
 
        order by id_mensaje desc");
         
@@ -448,7 +448,7 @@ where id_usuario='{$id_usuarioP}'");
     {
         $query = $this->db->query("select m.id_mensaje,m.id_usuarios,us.nombres as nombres_Solicitante, m.id_usuariop, up.nombres as nombres_pituto,
       m.id_solicitud,s.descripcion_solicitud,s.categoria, substring(m.mensaje from 1 for 10) as mensaje, to_char(m.fecha_registro,'DD-MM-YYY') as fecha_registro,
-     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto
+     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto,m.leido
 
        from t_mensajes m
 
@@ -457,7 +457,7 @@ where id_usuario='{$id_usuarioP}'");
       left join t_solicitudes s on (s.id_solicitud=m.id_solicitud)
       left join t_fotos f on (f.id_usuario=m.id_usuariop)
 
-       where m.id_usuarios={$id_usuario} and m.estatus=2
+       where m.id_usuarios={$id_usuario} and m.estatus=2 and m.eliminado_solicitante=1
 
        order by id_mensaje desc");
         
@@ -469,7 +469,7 @@ where id_usuario='{$id_usuarioP}'");
     {
         $query = $this->db->query("select m.id_mensaje,m.id_usuarios,us.nombres as nombres_Solicitante, m.id_usuariop, up.nombres as nombres_pituto,
       m.id_solicitud,s.descripcion_solicitud,s.categoria, substring(m.mensaje from 1 for 10) as mensaje, to_char(m.fecha_registro,'DD-MM-YYY') as fecha_registro,
-     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto
+     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto,m.leido
 
        from t_mensajes m
 
@@ -478,7 +478,7 @@ where id_usuario='{$id_usuarioP}'");
       left join t_solicitudes s on (s.id_solicitud=m.id_solicitud)
       left join t_fotos f on (f.id_usuario=m.id_usuarios)
 
-       where m.id_usuariop={$id_usuario} and m.estatus=2
+       where m.id_usuariop={$id_usuario} and m.estatus=2 and m.eliminado_pituto=1
 
        order by id_mensaje desc");
         
@@ -490,7 +490,7 @@ where id_usuario='{$id_usuarioP}'");
     {
         $query = $this->db->query("select m.id_mensaje,m.id_usuarios,us.nombres as nombres_Solicitante, m.id_usuariop, up.nombres as nombres_pituto,
       m.id_solicitud,s.descripcion_solicitud,s.categoria, substring(m.mensaje from 1 for 10) as mensaje, to_char(m.fecha_registro,'DD-MM-YYY') as fecha_registro,
-     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto
+     to_char(m.hora_registro,'HH:MM:SS') as hora_registro,f.foto,m.leido
 
        from t_mensajes m
 
@@ -499,7 +499,7 @@ where id_usuario='{$id_usuarioP}'");
       left join t_solicitudes s on (s.id_solicitud=m.id_solicitud)
       left join t_fotos f on (f.id_usuario=m.id_usuarios)
 
-       where m.id_usuariop={$id_usuario} and m.estatus=1
+       where m.id_usuariop={$id_usuario} and m.estatus=1 and m.eliminado_pituto=1
 
        order by id_mensaje desc");
         
@@ -560,7 +560,28 @@ where id_usuario='{$id_usuarioP}'");
         $query = $this->db->query("UPDATE t_mensajes set  leido=1 where id_solicitud='{$id_solicitud}'and  id_mensaje='{$id_mensaje}'");
         
     }
-    
+
+
+    public function upd_eliminado2($param)
+    {
+        $campos = array(
+            'id_mensaje' => $param['id_mensaje'],
+            'eliminado'  =>'1'
+        );
+        $this->db->where('id_mensaje', $param['id_mensaje']);
+        $this->db->update('t_mensajes', $campos);
+        
+        $query = $this->db->query("select * from t_mensajes");
+        return $query->result();
+    }
+
+    public function upd_eliminado_solicitante($id_mensaje) {
+       $query = $this->db->query("UPDATE t_mensajes set  eliminado_solicitante=0 where id_mensaje='{$id_mensaje}'");
+    }
+
+    public function eliminar_mensaje_pituto($id_mensaje) {
+       $query = $this->db->query("UPDATE t_mensajes set  eliminado_pituto=0 where id_mensaje='{$id_mensaje}'");
+    }
     
     
     

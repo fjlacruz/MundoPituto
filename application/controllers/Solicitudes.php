@@ -522,12 +522,18 @@ class Solicitudes extends CI_Controller
     }
 
 
-    public function eliminar_mensaje($id_mensaje)
+    public function eliminar_mensaje_solicitante($id_mensaje)
     {
-        $this->Solicitud_model->delete_mensaje($id_mensaje);
-        echo json_encode(array(
-            "status" => TRUE
-        ));
+     
+        $datos = $this->Solicitud_model->upd_eliminado_solicitante($id_mensaje);
+        echo json_encode($datos);
+    }
+
+    public function eliminar_mensaje_pituto($id_mensaje)
+    {
+     
+        $datos = $this->Solicitud_model->upd_eliminado_pituto($id_mensaje);
+        echo json_encode($datos);
     }
 
     public function responder_msj_pituto_solicitante()

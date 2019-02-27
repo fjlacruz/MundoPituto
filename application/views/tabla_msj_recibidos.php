@@ -3,13 +3,27 @@
    $id_perfil=($variablesSesion['id_perfil']);
    //print_r($id_perfil);
    $verificacion=$id_perfil;
+ 
    ?> 
+
+
+
+<style type="text/css">
+a {
+
+  color: black;
+}
+a:visited { 
+  color: grey;
+}
+</style>
+
 
 <table class="table table-striped" align='justify'>
    <thead>
       <tr >
          <th align="justify">&nbsp;</th>
-         <th align="justify">Remitente:</th>
+         <th align="justify">Remitente</th>
          <th align="justify">Solicitud</th>
          <th align="justify">Categoria</th>
          <th align="justify">Mensaje</th>
@@ -21,16 +35,18 @@
       echo "
       <tbody class='buscar'>";
       foreach ($resultados_recb as $resultado) {
+
           $id_usuariop = $resultado->id_usuariop;
           $id_usuarios = $resultado->id_usuarios;
           $id_mensaje = $resultado->id_mensaje;
           $id_solicitud = $resultado->id_solicitud;
           $nombres_pituto = $resultado->nombres_pituto;
-                  $nombres_solicitante = $resultado->nombres_solicitante;
-                  if($verificacion===3){
-                    $nombre=$nombres_pituto;
+          $nombres_solicitante = $resultado->nombres_solicitante;
+                  if($verificacion==='3'){
+                   $nombre=$nombres_solicitante;
                   }else{
-                     $nombre=$nombres_solicitante;
+                     
+                  $nombre=$nombres_pituto;
                   }
           $descripcion_solicitud = $resultado->descripcion_solicitud;
           $mensaje = $resultado->mensaje;
@@ -45,17 +61,20 @@
                }else{
                 $foto="<img class='img-circle'  width='35' height='35' src='http://localhost/MundoPituto/uploads/".$resultado->foto."' />";  
                }
+
+           
+
       echo "
       <tr align='right'> 
-      <td align='right'>" . $foto ."</td>
-      <td align='right'>" . $nombre ."</td>  
-      <td align='right'>" . $descripcion_solicitud ."</td>
-      <td align='right'>" . $categoria[1] ."</td>            
-      <td align='right'>" . $mensaje . '....'. "</td> 
-      <td align='right'>" . $fecha_registro ."&nbsp;&nbsp;&nbsp;". $hora_registro. "</td>
+      <td align='right'><strong>" . $foto ."</strong></td>
+      <td align='right'><a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "'><strong>" . $nombre ."</strong></a></td>  
+      <td align='right'><a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "' ><strong>" . $descripcion_solicitud ."</a></strong></td>
+      <td align='right'><a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "' ><strong>" . $categoria[1] ."</a></strong></td>            
+      <td align='right'><a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "'><strong>" . $mensaje . '....'. "</a></strong></td> 
+      <td align='right'><a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "'><strong>" . $fecha_registro ."&nbsp;&nbsp;&nbsp;". $hora_registro. "</a></strong></td>
       <td align='justify' > 
-      <a href='#' data-id='$resultado->id_mensaje' class='deleteButton'><span tooltip='Eliminar'><span class='fa  fa-trash'></span></span></a>
-      <a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "' class=''><span tooltip='Responder'><span class='fa  fa-envelope'></span></span></a>
+      <strong><a href='#' data-id='$resultado->id_mensaje' class='deleteButton'><span tooltip='Eliminar'><span class='fa  fa-trash'></span></span></a>
+      <a href='" . base_url() . "Solicitudes/responder_msj_pituto_solicitante?id_solicitud=" . "$resultado->id_solicitud" . "&id_mensaje=" . $resultado->id_mensaje.  "' class=''><span tooltip='Responder'><span class='fa  fa-envelope'></span></span></a></strong>
       </td>
       </tr>";
       }
@@ -64,3 +83,26 @@
       ";
       ?>
 </table>
+
+
+
+
+
+
+<script type="text/javascript">
+   $(document).ready(function() {
+   $('.deleteButton').on('click', function() {
+       var id = $(this).attr('data-id');
+       $.ajax({
+           url: "<?php echo base_url() . 'Solicitudes/eliminar_mensaje_solicitante/'; ?>" + id,
+           method: 'POST'
+   
+       }).success(function(response) {
+            alertify.log("Mensaje Eliminado...!!!"); 
+            $('#formulario')[0].reset();
+               reload_table();
+           });
+   
+       });
+   });
+</script>

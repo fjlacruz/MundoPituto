@@ -162,7 +162,7 @@ p.italic {
                 <div class="col-md-6 login-form-1">
                     <div id="estilo1" align="center"><p><h3>Login Mundo Pituto</h3></p></div>
                     <div align="center">
-                    <img class="img-responsive" src='https://localhost/MundoPituto/application/recursos/imagenes/logo.PNG' />
+                    <img class="img-responsive" src='<?php echo base_url(); ?>application/recursos/imagenes/logo.PNG' />
                 </div>
                     <form action='login' name="formulario" id="formulario" method="post">
                         <div class="form-group">

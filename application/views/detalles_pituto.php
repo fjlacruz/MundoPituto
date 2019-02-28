@@ -177,8 +177,8 @@ $(document).ready(function(){
                           ?>
                      <div class="col-sm-4" align="left"  >
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                        <a target="_blank" href="https://127.0.0.1/MundoPituto/uploads/<?php echo $foto?>">
-                        <img class="img-thumbnail img-responsive zoom"  width="250" height="250" src='https://127.0.0.1/MundoPituto/uploads/<?php echo $foto?>'/>
+                        <a target="_blank" href="<?php echo base_url(); ?>uploads/<?php echo $foto?>">
+                        <img class="img-thumbnail img-responsive zoom"  width="250" height="250" src='<?php echo base_url(); ?>uploads/<?php echo $foto?>'/>
                         </a><br/>
                         <div align="center" >
                            <br/><br/>
@@ -194,10 +194,10 @@ $(document).ready(function(){
                                       {
                                       ?>
                                  <a align="center" class="thumbnail fondo aplanado" href="#" data-image-id="" data-toggle="modal" data-title=""
-                                    data-image="https://127.0.0.1/MundoPituto/archivos/<?php echo $resultado->foto?>"
+                                    data-image="<?php echo base_url(); ?>archivos/<?php echo $resultado->foto?>"
                                     data-target="#image-gallery">
                                  <img class="img-thumbnail fondo aplanado" 
-                                    src="https://127.0.0.1/MundoPituto/archivos/<?php echo $resultado->foto?>"
+                                    src="<?php echo base_url(); ?>archivos/<?php echo $resultado->foto?>"
                                     alt="Galeria">
                                  </a>
                                  <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -238,7 +238,7 @@ $(document).ready(function(){
                             } 
                           ?>
                      <div class="col-sm-4" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                     <img class="img-circle" width="150" height="150" src='https://127.0.0.1/MundoPituto/silueta.jpg'/>
+                     <img class="img-circle" width="150" height="150" src='<?php echo base_url(); ?>silueta.jpg'/>
                      </div>
                      <?php } ?>
                      <?php

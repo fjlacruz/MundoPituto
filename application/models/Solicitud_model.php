@@ -544,7 +544,7 @@ where id_usuario='{$id_usuarioP}'");
         $this->db->delete('t_mensajes');
     }
     
-    public function consultar_datos_mensaje($id_solicitud,$id_mensaje)
+    public function consultar_datos_mensaje($id_solicitud, $id_mensaje)
     {
         $query = $this->db->query("select m.id_mensaje,m.id_usuarios,us.nombres as nombres_Solicitante, m.id_usuariop, up.nombres as nombres_pituto,
       m.id_solicitud,s.descripcion_solicitud,s.categoria, m.mensaje, to_char(m.fecha_registro,'DD-MM-YYY') as fecha_registro,
@@ -564,8 +564,8 @@ where id_usuario='{$id_usuarioP}'");
         return $query->result();
         
     }
-
-    public function consultar_datos_mensaje2($id_solicitud,$id_mensaje)
+    
+    public function consultar_datos_mensaje2($id_solicitud, $id_mensaje)
     {
         $query = $this->db->query("select m.id_mensaje,m.id_usuarios,us.nombres as nombres_Solicitante, m.id_usuariop, up.nombres as nombres_pituto,
       m.id_solicitud,s.descripcion_solicitud,s.categoria, m.mensaje, to_char(m.fecha_registro,'DD-MM-YYY') as fecha_registro,
@@ -585,20 +585,20 @@ where id_usuario='{$id_usuarioP}'");
         return $query->result();
         
     }
-
-     public function marcar_msj_leido($id_solicitud, $id_mensaje)
+    
+    public function marcar_msj_leido($id_solicitud, $id_mensaje)
     {
         
         $query = $this->db->query("UPDATE t_mensajes set  leido=1 where id_solicitud='{$id_solicitud}'and  id_mensaje='{$id_mensaje}'");
         
     }
-
-
+    
+    
     public function upd_eliminado2($param)
     {
         $campos = array(
             'id_mensaje' => $param['id_mensaje'],
-            'eliminado'  =>'1'
+            'eliminado' => '1'
         );
         $this->db->where('id_mensaje', $param['id_mensaje']);
         $this->db->update('t_mensajes', $campos);
@@ -606,19 +606,43 @@ where id_usuario='{$id_usuarioP}'");
         $query = $this->db->query("select * from t_mensajes");
         return $query->result();
     }
-
-    public function upd_eliminado_solicitante($id_mensaje) {
-
-       $query = $this->db->query("UPDATE t_mensajes set  eliminado_solicitante=0 where id_mensaje='{$id_mensaje}'");
-    }
-
-    public function consulata_media_valoracion($id_usuarioP) {
-       $query = $this->db->query("select (select SUM(puntuacion) FROM t_asignacion_solicitudes where id_usuario='{$id_usuarioP}')/
-       (select count(id_usuario) from t_asignacion_solicitudes where id_usuario='{$id_usuarioP}')as promedio
-        from t_asignacion_solicitudes where id_usuario='{$id_usuarioP}' limit 1");
-       return $query->result();
+    
+    public function upd_eliminado_solicitante($id_mensaje)
+    {
+        
+        $query = $this->db->query("UPDATE t_mensajes set  eliminado_solicitante=0 where id_mensaje='{$id_mensaje}'");
     }
     
+    public function consulata_media_valoracion($id_usuarioP)
+    {
+        $query = $this->db->query("select (select SUM(puntuacion) FROM t_asignacion_solicitudes where id_usuario='{$id_usuarioP}')/
+       (select count(id_usuario) from t_asignacion_solicitudes where id_usuario='{$id_usuarioP}')as promedio
+        from t_asignacion_solicitudes where id_usuario='{$id_usuarioP}' limit 1");
+        return $query->result();
+    }
+    
+    
+    public function contrataciones_pituto($id_usuario)
+    {
+        $query = $this->db->query("select a.id_solicitud,a.id_usuario,a.id_usuario_solicitante,a.valoracion,to_char(a.fecha_registro,'DD-MM-YYY') as fecha_registro, a.puntuacion,
+       s.descripcion_solicitud, s.categoria,u.nombres as pituto, us.nombres as solicitante,s.region_id,r.region_nombre,p.provincia_nombre,c.comuna_nombre,
+       s.tipo_solicitud
+
+       from t_asignacion_solicitudes a
+
+         left join t_usuarios u on (a.id_usuario=u.id_usuario)
+         left join t_usuarios us on (a.id_usuario_solicitante=us.id_usuario)
+         left join t_solicitudes s on (a.id_solicitud=s.id_solicitud)
+         left join n_regiones r on (s.region_id=r.region_id)
+         left join n_provincias p on (s.provincia_id=p.provincia_id)
+         left join n_comunas c on (s.comuna_id=c.comuna_id)
+
+
+       where a.valoracion <> '' and a.estatus=2 and a.id_usuario='{$id_usuario}'
+
+       order by s.id_solicitud desc");
+        return $query->result();
+    }
     
     
     //    SELECT id_sub_opcion,ruta,id_opcion,id_n_sub_opcion FROM r_opciones_sub_opciones where id_sub_opcion=ANY(p_id_subOpciones) order by id_sub_opcion

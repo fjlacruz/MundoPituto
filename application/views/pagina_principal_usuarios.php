@@ -92,16 +92,16 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                <div class="item active">
-                  <img  class="img-responsive" src="https://localhost/MundoPituto/application/recursos/imagenes/presentacion1.jpg" style="width:100%;">
+                  <img  class="img-responsive" src="<?php echo base_url(); ?>application/recursos/imagenes/presentacion1.jpg" style="width:100%;">
                </div>
                <div class="item">
-                  <img  class="img-responsive" src="https://localhost/MundoPituto/application/recursos/imagenes/presentacion2.jpg" style="width:100%;">
+                  <img  class="img-responsive" src="<?php echo base_url(); ?>application/recursos/imagenes/presentacion2.jpg" style="width:100%;">
                </div>
                <div class="item">
-                  <img  class="img-responsive" src="https://localhost/MundoPituto/application/recursos/imagenes/presentacion3.jpg" style="width:100%;">
+                  <img  class="img-responsive" src="<?php echo base_url(); ?>application/recursos/imagenes/presentacion3.jpg" style="width:100%;">
                </div>
                <div class="item">
-                  <img  class="img-responsive" src="https://localhost/MundoPituto/application/recursos/imagenes/presentacion4.jpg" style="width:100%;">
+                  <img  class="img-responsive" src="<?php echo base_url(); ?>application/recursos/imagenes/presentacion4.jpg" style="width:100%;">
                </div>
             </div>
             <!-- Left and right controls -->
@@ -215,7 +215,7 @@
                       
                   echo "
                   <tr align='right'>
-                  <td align='right'><img class='img-circle'  width='35' height='35' src='http://localhost/MundoPituto/uploads/".$resultado->foto."' /></td>
+                  <td align='right'><img class='img-circle'  width='35' height='35' src='http://127.0.0.1/MundoPituto/uploads/".$resultado->foto."' /></td>
                   <td align='right'>" . $categoria[1] . "</td>             
                   <td align='right'>" . $nombres . "</td>               
                   <td align='right'>" . $region_nombre . "</td>
@@ -295,7 +295,7 @@
    </body>
    <div class="col-sm-12">&nbsp;</div>
    <div align="center">
-            <img class="img-responsive" width="20%" height="10%" src='https://localhost/MundoPituto/application/recursos/imagenes/logo.PNG' />
+            <img class="img-responsive" width="20%" height="10%" src='<?php echo base_url(); ?>application/recursos/imagenes/logo.PNG' />
          </div>
 </html>
 <script>

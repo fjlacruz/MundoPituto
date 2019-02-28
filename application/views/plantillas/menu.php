@@ -68,14 +68,14 @@
 
             if ($verficacion == 1) { ?>
             <li style="float: right; margin-top: 18px" >
-            <img class="img-circle"  width="30" height="30" src='http://localhost/MundoPituto/uploads/<?php echo $foto?>' />&nbsp;&nbsp;
+            <img class="img-circle"  width="30" height="30" src='<?php echo base_url() ?>uploads/<?php echo $foto?>' />&nbsp;&nbsp;
             </li>
             <?php } ?>
             <?php 
             $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario); 
             if ($verficacion == 0) { ?>
             <li style="float: right; margin-top: 18px" >
-            <img class="img-circle"  width="30" height="30" src='http://localhost/MundoPituto/silueta.jpg' />&nbsp;&nbsp;
+            <img class="img-circle"  width="30" height="30" src='<?php echo base_url() ?>silueta.jpg' />&nbsp;&nbsp;
             </li>
             <?php } ?>
          </ul>
@@ -90,6 +90,8 @@
 
             <li><a  href="<?php echo BASE_URL() ?>solicitudes/mensajes"><i class="fa fa-envelope"></i></i> Mensajes <div class="label label-warning" id="mensajes_recibidos_sol"></div></a></li>
 
+
+
             <li style="float: right;"><a href="<?php echo base_url() ?>principal/logout"><span class="glyphicon glyphicon-log-in" ></span></a></li>
             <li style="float: right;">
               <a href="<?php echo base_url() ?>Administracion/usuarioModificar"  class="navbar-link" >
@@ -102,14 +104,14 @@
 
             if ($verficacion == 1) { ?>
             <li style="float: right; margin-top: 18px" >
-            <img class="img-circle"  width="30" height="30" src='http://localhost/MundoPituto/uploads/<?php echo $foto?>' />&nbsp;&nbsp;
+            <img class="img-circle"  width="30" height="30" src='<?php echo base_url() ?>uploads/<?php echo $foto?>' />&nbsp;&nbsp;
             </li>
             <?php } ?>
             <?php 
             $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario); 
             if ($verficacion == 0) { ?>
             <li style="float: right; margin-top: 18px" >
-            <img class="img-circle"  width="30" height="30" src='http://localhost/MundoPituto/silueta.jpg' />&nbsp;&nbsp;
+            <img class="img-circle"  width="30" height="30" src='<?php echo base_url() ?>silueta.jpg' />&nbsp;&nbsp;
             </li>
             <?php } ?>
          </ul>
@@ -122,6 +124,8 @@
             <li><a  class="homer" href="<?php echo BASE_URL() ?>Solicitudes/solicitudes" ><i class="fa fa-home"></i> Mundo Pituto</a></li>
             </li>
             <li><a  href="<?php echo BASE_URL() ?>solicitudes/mensajes"><i class="fa fa-envelope"></i></i> Mensajes <div class="label label-warning" id="mensajes_recibidos_pit"></div></a></li>
+
+            <li><a  href="<?php echo BASE_URL() ?>solicitudes/verContrataciones"><i class="fa fa-tag"></i></i>  Contrataciones</a></li>
             
             <li style="float: right;"><a href="<?php echo base_url() ?>principal/logout"><span class="glyphicon glyphicon-log-in" ></span></a></li>
             <li style="float: right;">
@@ -135,14 +139,14 @@
 
             if ($verficacion == 1) { ?>
             <li style="float: right; margin-top: 18px" >
-            <img class="img-circle"  width="30" height="30" src='http://localhost/MundoPituto/uploads/<?php echo $foto?>' />&nbsp;&nbsp;
+            <img class="img-circle"  width="30" height="30" src='<?php echo base_url() ?>uploads/<?php echo $foto?>' />&nbsp;&nbsp;
             </li>
             <?php } ?>
             <?php 
             $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario); 
             if ($verficacion == 0) { ?>
             <li style="float: right; margin-top: 18px" >
-            <img class="img-circle"  width="30" height="30" src='http://localhost/MundoPituto/silueta.jpg' />&nbsp;&nbsp;
+            <img class="img-circle"  width="30" height="30" src='<?php echo base_url() ?>silueta.jpg' />&nbsp;&nbsp;
             </li>
             <?php } ?>
          </ul>

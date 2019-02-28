@@ -570,11 +570,37 @@ class Solicitudes extends CI_Controller
         $this->load->view('plantillas/administracion/header');
         $this->load->view('plantillas/menu');
         $this->load->view('responder_mensajes_SP_view',$vars);
-         }
-
-        
+         }  
 
     }
+
+    public function verContrataciones()
+    {
+        $variablesSesion = $this->session->userdata('usuario');
+        $id_usuario      = ($variablesSesion['id_usuario']);
+        if ($id_usuario == "") {
+            echo "<script>
+                alert('Sesion cerrada por inactividad');
+                location.href ='https://127.0.0.1/MundoPituto/';
+                </script>";
+            
+        } else {
+            $arrayData = array();
+            extract($_GET);
+            //print_r($_GET);
+
+            $variablesSesion     = $this->session->userdata('usuario');
+            $id_usuario          = ($variablesSesion['id_usuario']);
+     
+            $vars['resultados']  = $this->Solicitud_model->contrataciones_pituto($id_usuario);
+         //print_r($vars); //exit();
+
+            $this->load->view('plantillas/administracion/header');
+            $this->load->view('plantillas/menu');
+            $this->load->view('contrataciones_pituto_view',$vars);
+            
+        }
+    } 
 
     
 

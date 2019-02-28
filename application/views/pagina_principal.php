@@ -111,16 +111,16 @@ if(isset($_POST["Fenviado"])){
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                <div class="item active">
-                  <img  class="img-responsive" src="https://127.0.0.1/MundoPituto/application/recursos/imagenes/presentacion1.jpg" style="width:100%;">
+                  <img  class="img-responsive" src="<?php echo base_url(); ?>application/recursos/imagenes/presentacion1.jpg" style="width:100%;">
                </div>
                <div class="item">
-                  <img  class="img-responsive" src="https://127.0.0.1/MundoPituto/application/recursos/imagenes/presentacion2.jpg" style="width:100%;">
+                  <img  class="img-responsive" src="<?php echo base_url(); ?>application/recursos/imagenes/presentacion2.jpg" style="width:100%;">
                </div>
                <div class="item">
-                  <img  class="img-responsive" src="https://127.0.0.1/MundoPituto/application/recursos/imagenes/presentacion3.jpg" style="width:100%;">
+                  <img  class="img-responsive" src="<?php echo base_url(); ?>application/recursos/imagenes/presentacion3.jpg" style="width:100%;">
                </div>
                <div class="item">
-                  <img  class="img-responsive" src="https://127.0.0.1/MundoPituto/application/recursos/imagenes/presentacion4.jpg" style="width:100%;">
+                  <img  class="img-responsive" src="<?php echo base_url(); ?>application/recursos/imagenes/presentacion4.jpg" style="width:100%;">
                </div>
             </div>
             <!-- Left and right controls -->
@@ -208,7 +208,7 @@ if(isset($_POST["Fenviado"])){
       <div class="col-md-8 login-form-1">
          <div align="left">
             <p>
-            <h3>Solicitudes Publicadas....</h3>
+            <h3>Solicitudes Publicadas</h3>
             </p>
          </div>
          <div class="input-group"> <span class="input-group-addon"><i class="fa fa-search"></i> Buscar</span>
@@ -248,7 +248,7 @@ if(isset($_POST["Fenviado"])){
                       
                   echo "
                   <tr align='right'>
-                  <td align='right'><img class='img-circle'  width='35' height='35' src='http://localhost/MundoPituto/uploads/".$resultado->foto."' /></td>             
+                  <td align='right'><img class='img-circle'  width='35' height='35' src='http://127.0.0.1/MundoPituto/uploads/".$resultado->foto."' /></td>             
                                 
                   <td width='8%'>" . $tipo_solicitud . "</td>
                   <td>" . $descripcion_solicitud . "</td>
@@ -330,7 +330,7 @@ if(isset($_POST["Fenviado"])){
    </body>
    <div class="col-sm-12">&nbsp;</div>
    <div align="center">
-            <img class="img-responsive" width="20%" height="10%" src='https://localhost/MundoPituto/application/recursos/imagenes/logo.PNG' />
+            <img class="img-responsive" width="20%" height="10%" src='<?php echo base_url(); ?>application/recursos/imagenes/logo.PNG' />
          </div>
 </html>
 <script>

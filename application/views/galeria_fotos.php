@@ -85,11 +85,11 @@ $id_usuario      = ($variablesSesion['id_usuario']);
                      <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                       <a type="button" href="https://localhost/MundoPituto/Administracion/eliminar_foto_galeria?id_foto_galeria=<?php echo $resultado->id_foto_galeria?>"><span tooltip='Eliminar Imagen de la Galer&iacute;a'><span class='fa  fa-trash'></span></span></a>
                         <a class="thumbnail fondo aplanado" href="#" data-image-id="" data-toggle="modal" data-title=""
-                           data-image="https://localhost/MundoPituto/archivos/<?php echo $resultado->foto?>"
+                           data-image="<?php echo base_url(); ?>archivos/<?php echo $resultado->foto?>"
                            data-target="#image-gallery">
 
                         <img class="img-thumbnail fondo aplanado" 
-                           src="https://localhost/MundoPituto/archivos/<?php echo $resultado->foto?>"
+                           src="<?php echo base_url(); ?>archivos/<?php echo $resultado->foto?>"
                            alt="Galeria">
 
                         </a>

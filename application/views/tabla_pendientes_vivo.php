@@ -6,6 +6,7 @@
             <th align="justify">Solicitante</th>
             <th align="justify">Tipo</th>
             <th align="justify">Categor&iacute;a</th>
+            <th align="justify">Ubicaci&oacute;n</th>
             <th align="justify">Descripci&oacute;n</th>
             <th align="justify">Fecha</th>
          </tr>
@@ -32,6 +33,9 @@
              $fecha_registro = $resultado->fecha_registro;
              $categoria = preg_split( "/[{}]+/", $resultado->categoria );
              $foto_solicitante= $this->Consultas_usuarios_model->mostrar_foto($id_usuario);
+             $region_nombre = $resultado->region_nombre;
+             $provincia_nombre = $resultado->provincia_nombre;
+             $comuna_nombre = $resultado->comuna_nombre;
             
              foreach ($foto_solicitante as $resultado) {
               $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
@@ -53,6 +57,7 @@
          <td>" . $nombres . "</td>              
          <td width='8%'>" . $tipo_solicitud . "</td>
          <td>" . $categoria[1] . "</td>
+         <td>" . $region_nombre . '/'. $provincia_nombre .'/'. $comuna_nombre ."</td>
          <td>" . $descripcion_solicitud . "</td>
          <td>" . $fecha_registro . "</td>               
          </tr>";

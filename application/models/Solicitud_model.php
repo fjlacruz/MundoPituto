@@ -36,10 +36,13 @@ class Solicitud_model extends CI_Model
     public function solicitudes_pendientes($id_usuario)
     {
         $query = $this->db->query("select s.id_solicitud,s.tipo_solicitud,
-      s.descripcion_solicitud,s.id_usuario, u.nombres,s.categoria, to_char(s.fecha_registro,'DD-MM-YYY') as fecha_registro, case when s.estatus=1 then 'PENDIENTE' else 'CERRADA' end estatus
+      s.descripcion_solicitud,s.id_usuario, u.nombres,s.categoria, to_char(s.fecha_registro,'DD-MM-YYY') as fecha_registro, case when s.estatus=1 then 'PENDIENTE' else 'CERRADA' end estatus,s.region_id,n.region_nombre,s.provincia_id,p.provincia_nombre,s.comuna_id,c.comuna_nombre
        from t_solicitudes s
        
        left join t_usuarios u on (s.id_usuario=u.id_usuario)
+       left join n_regiones n on (s.region_id=n.region_id)
+       left join n_provincias p on (s.provincia_id = p.provincia_id)
+       left join n_comunas c on (s.comuna_id = c.comuna_id)
        where s.id_usuario='{$id_usuario}' and s.estatus='1'
        order by s.id_solicitud desc");
         
@@ -49,10 +52,13 @@ class Solicitud_model extends CI_Model
     public function solicitudes_pendientes_todas()
     {
         $query = $this->db->query("select s.id_solicitud,s.tipo_solicitud,
-      s.descripcion_solicitud,s.id_usuario, u.nombres,s.categoria, to_char(s.fecha_registro,'DD-MM-YYY') as fecha_registro, case when s.estatus=1 then 'PENDIENTE' else 'CERRADA' end estatus
+      s.descripcion_solicitud,s.id_usuario, u.nombres,s.categoria, to_char(s.fecha_registro,'DD-MM-YYY') as fecha_registro, case when s.estatus=1 then 'PENDIENTE' else 'CERRADA' end estatus,s.region_id,n.region_nombre,s.provincia_id,p.provincia_nombre,s.comuna_id,c.comuna_nombre
        from t_solicitudes s
        
        left join t_usuarios u on (s.id_usuario=u.id_usuario)
+       left join n_regiones n on (s.region_id=n.region_id)
+       left join n_provincias p on (s.provincia_id = p.provincia_id)
+       left join n_comunas c on (s.comuna_id = c.comuna_id)
        where s.estatus='1'
        order by s.id_solicitud desc limit 200");
         
@@ -244,13 +250,18 @@ left join n_comunas c on (s.comuna_id=c.comuna_id)
     public function buscar_pitutos($categoria, $id_solicitud)
     {
         $query = $this->db->query("select u.cedula,u.nombres, u.id_perfil,r.descripcion_perfil,u.nombres ,u.usuario ,u.correo,u.id_usuario,f.foto, 
-                (select id_solicitud from t_solicitudes where id_solicitud='{$id_solicitud}'),
-                (select categoria FROM regexp_split_to_table('{$categoria}', ',') AS categoria)
+                                   u.region_id,n.region_nombre,u.provincia_id,p.provincia_nombre,u.comuna_id,c.comuna_nombre,
+                                   (select id_solicitud from t_solicitudes where id_solicitud='{$id_solicitud}'),
+                                   (select categoria FROM regexp_split_to_table('{$categoria}', ',') AS categoria)
 
                from t_usuarios u
 
                left join n_perfil r on (r.id_perfil=u.id_perfil)
                left join t_fotos f on (f.id_usuario=u.id_usuario)
+               left join n_regiones n on (u.region_id=n.region_id)
+               left join n_provincias p on (u.provincia_id = p.provincia_id)
+               left join n_comunas c on (u.comuna_id = c.comuna_id)
+
                where u.categoria &&'{$categoria}' and u.estatus=1 and u.id_perfil=3
                order by u.id_usuario desc");
         

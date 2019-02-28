@@ -39,6 +39,7 @@
             <th align="justify">Solicitante</th>
             <th align="justify">Tipo</th>
             <th align="justify">Categor&iacute;a</th>
+            <th align="justify">Ubicaci&oacute;n</th>
             <th align="justify">Descripci&oacute;n</th>
             <th align="justify">Fecha</th>
             <th align="justify">Acciones</th>
@@ -65,12 +66,16 @@
              $descripcion_solicitud = $resultado->descripcion_solicitud;
              $fecha_registro = $resultado->fecha_registro;
              $categoria = preg_split( "/[{}]+/", $resultado->categoria );
+             $region_nombre = $resultado->region_nombre;
+             $provincia_nombre = $resultado->provincia_nombre;
+             $comuna_nombre = $resultado->comuna_nombre;
              
          echo "
          <tr align='right'>             
          <td>" . $nombres . "</td>            
          <td width='8%'>" . $tipo_solicitud . "</td>
          <td>" . $categoria[1] . "</td>
+         <td>" . $region_nombre . '/'. $provincia_nombre .'/'. $comuna_nombre ."</td>
          <td>" . $descripcion_solicitud . "</td>
          <td>" . $fecha_registro . "</td>               
          <td align='justify' > 

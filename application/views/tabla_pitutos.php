@@ -117,6 +117,7 @@
                            <tr >
                               <th align="justify">&nbsp;</th>
                               <th align="justify">Categor&iacutea</th>
+                              <th align="justify">Ubicaci&oacute;n Disponible</th>
                               <th align="justify">Nombres/Raz&oacute;n Social</th>
                               <th align="justify">Email</th>
                               <th align="justify">Acciones</th>
@@ -139,11 +140,15 @@
                                $nombres = $resultado->nombres;
                                $correo = $resultado->correo;
                                $categoria = preg_split( "/[{}]+/", $resultado->categoria );
+                               $region_nombre = $resultado->region_nombre;
+                               $provincia_nombre = $resultado->provincia_nombre;
+                               $comuna_nombre = $resultado->comuna_nombre;
                                
                            echo "
                            <tr align='right'> 
                            <td align='right'>" . $foto_pituto ."</td> 
-                           <td align='right'>" . $categoria[1] ."</td>           
+                           <td align='right'>" . $categoria[1] ."</td> 
+                           <td>" . $region_nombre . '/'. $provincia_nombre .'/'. $comuna_nombre ."</td>          
                            <td align='right'>" . $nombres ."</td>               
                            <td>" . $correo . "</td>         
                            <td align='justify' > 

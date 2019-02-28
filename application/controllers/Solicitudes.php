@@ -61,16 +61,18 @@ class Solicitudes extends CI_Controller
             $id_perfil      = ($variablesSesion['id_perfil']);
             
             $arrayData          = array();
-            if($id_perfil==3){
+            if($id_perfil===3){
                 $vars['resultados'] = $this->Solicitud_model->solicitudes_pendientes_todas();
+                 //print_r($vars);
             }else{
                $vars['resultados'] = $this->Solicitud_model->solicitudes_pendientes($id_usuario);
+              // print_r($vars);
             }
             //print_r($vars);
             $this->load->view('tabla_pendientes', $vars);
         
     }
-
+//=============== tabla que mustra todas las solicitudes registradas a los usuarios pitutos ==========================//
     public function tabla_en_vivo()
     {
        

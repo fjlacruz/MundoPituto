@@ -34,6 +34,27 @@
    width:auto;
    }
 </style>
+<style type='text/css'>
+   img.ribbon {
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   right: 0;
+   border: 0;
+   cursor: pointer; }
+   .starrr {
+   display: inline-block; }
+   .starrr a {
+   font-size: 16px;
+   padding: 0 1px;
+   cursor: pointer;
+   color: #FFD119;
+   text-decoration: none; }
+   .checked {
+   color: orange;
+   }
+</style>
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application/recursos/css/tooltip.css" />
 <script src="<?php echo base_url(); ?>application/scripts/ruta_solicitudes.js"></script>
 <script type="text/javascript">
@@ -105,14 +126,17 @@
                </br>
                <div id="scroll">
                   <div>
-                     <table class="table table-striped" align='justify'>
+                     <table class="table table-striped" align='justify' width='100%'>
                         <thead>
                            <tr >
                               <th align="justify">Categor&iacute;a</th>
                               <th align="justify">Tipo</th>
                               <th align="justify">Descripci&oacute;n</th>
+                              <th align="justify">Pituto</th>
+                              <th align="justify">Ubicaci&oacute;n</th>
                               <th align="justify">Fecha</th>
-                              <th align="justify">Acciones</th>
+                              <th align="justify">Valoraci&oacute;n</th>
+                              <th align="justify">Puntuaci&oacute;n</th>
                            </tr>
                         </thead>
                         <?php
@@ -124,17 +148,71 @@
                                $descripcion_solicitud = $resultado->descripcion_solicitud;
                                $fecha_registro = $resultado->fecha_registro;
                                $categoria = preg_split( "/[{}]+/", $resultado->categoria );
+                               $nombre_pituto = $resultado->nombre_pituto;
+                               $region_nombre = $resultado->region_nombre;
+                               $provincia_nombre = $resultado->provincia_nombre;
+                               $comuna_nombre = $resultado->comuna_nombre;
+                               $valoracion = $resultado->valoracion;
+                               $puntuacion=$resultado->puntuacion;
+                         if($puntuacion=='5'){
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               </div>";
+                               }elseif ($puntuacion=='4') {
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               </div>";
+                               }elseif($puntuacion=='3'){
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }elseif($puntuacion=='2'){
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }else{
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }
+
+                               // <td align='justify' > 
+                           // <a href='#' data-id='$resultado->id_solicitud' class='deleteButton'><span tooltip='Eliminar del Historial'><span class='fa  fa-trash'></span></span></a>
+                           // </td>
+
                                
                            echo "         
                            <td style='display:none'>" . $id_solicitud ."</td>  
                            <td>" . $categoria[1] . "</td>            
                            <td>" . $tipo_solicitud . "</td>
                            <td>" . $descripcion_solicitud . "</td>
+                           <td>" . $nombre_pituto . "</td>
+                           <td >" . $region_nombre . '/'.$provincia_nombre .'/'.$comuna_nombre."</td>
                            <td>" . $fecha_registro . "</td>
+                           <td>" . $valoracion . "</td>
+                           <td>" . $puntuacion . "</td>
                                          
-                           <td align='justify' > 
-                           <a href='#' data-id='$resultado->id_solicitud' class='deleteButton'><span tooltip='Eliminar del Historial'><span class='fa  fa-trash'></span></span></a>
-                           </td>
+                           
                            </tr>";
                            }
                            echo "

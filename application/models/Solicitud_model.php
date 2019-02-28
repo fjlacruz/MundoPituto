@@ -159,10 +159,20 @@ class Solicitud_model extends CI_Model
     
     public function solicitudes_cerradas($id_usuario)
     {
-        $query = $this->db->query("select s.id_solicitud,s.categoria,s.tipo_solicitud,s.descripcion_solicitud,s.id_usuario, u.nombres, to_char(s.fecha_registro,'DD-MM-YYY') as fecha_registro, s.estatus
+        $query = $this->db->query("select s.id_solicitud,s.categoria,s.tipo_solicitud,s.descripcion_solicitud,s.id_usuario, u.nombres, to_char(s.fecha_registro,'DD-MM-YYY') as fecha_registro, s.estatus,
+       a.id_asignacion_solicitud,a.id_usuario, (select u.nombres from t_asignacion_solicitudes a left join t_usuarios u on (a.id_usuario=u.id_usuario) 
+       where a.id_usuario_solicitante='{$id_usuario}' limit 1) as nombre_pituto,a.valoracion,a.puntuacion,r.region_nombre,
+       p.provincia_nombre, c.comuna_nombre
+       
        from t_solicitudes s
+       
        left join t_usuarios u on (s.id_usuario=u.id_usuario)
+       left join t_asignacion_solicitudes a on (a.id_solicitud=s.id_solicitud)
+       left join n_regiones r  on (r.region_id=s.region_id)
+       left join n_provincias p  on (p.provincia_id=s.provincia_id)
+       left join n_comunas c  on (c.comuna_id=s.comuna_id)
        where s.estatus='2' and s.id_usuario='{$id_usuario}'
+       
        order by s.id_solicitud desc");
         
         return $query->result();
@@ -257,7 +267,7 @@ left join n_comunas c on (s.comuna_id=c.comuna_id)
                left join n_provincias p on (u.provincia_id = p.provincia_id)
                left join n_comunas c on (u.comuna_id = c.comuna_id)
 
-               where u.categoria &&'{$categoria}' and u.estatus=1 and u.id_perfil=3
+               where u.categoria &&'{$categoria}' and u.estatus=1 
                order by u.id_usuario desc");
         
         return $query->result();

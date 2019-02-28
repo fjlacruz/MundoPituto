@@ -34,6 +34,30 @@
    width:auto;
    }
 </style>
+
+<style type='text/css'>
+   img.ribbon {
+   position: fixed;
+   z-index: 1;
+   top: 0;
+   right: 0;
+   border: 0;
+   cursor: pointer; }
+   .starrr {
+   display: inline-block; }
+   .starrr a {
+   font-size: 16px;
+   padding: 0 1px;
+   cursor: pointer;
+   color: #FFD119;
+   text-decoration: none; }
+   .checked {
+   color: orange;
+   }
+</style>
+
+
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application/recursos/css/tooltip.css" />
 <script src="<?php echo base_url(); ?>application/scripts/ruta_solicitudes.js"></script>
 <script type="text/javascript">
@@ -59,7 +83,7 @@
             <div class="col-md-12 login-form-1" >
                <div id="estilo1" align="center">
                   <p>
-                  <h3>Historico de Contrataciones</h3>
+                  <h3>Hist&oacute;rico de Contrataciones</h3>
                   </p>
                </div>
                </br>
@@ -93,7 +117,52 @@
              $comuna_nombre = $resultado->comuna_nombre;
              $fecha_registro = $resultado->fecha_registro;
              $valoracion = $resultado->valoracion;
-             $puntuacion = $resultado->puntuacion;
+             $puntuacion=$resultado->puntuacion;
+                         if($puntuacion=='5'){
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               </div>";
+                               }elseif ($puntuacion=='4') {
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               </div>";
+                               }elseif($puntuacion=='3'){
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }elseif($puntuacion=='2'){
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }else{
+                                $puntuacion = "<div class='starrr' id='star2'>
+                                               <span class='fa fa-star checked'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                               <span class='fa fa-star'></span>
+                                              </div>";
+                               }
+
+
+
+
              $solicitante = $resultado->solicitante;
              $categoria = preg_split( "/[{}]+/", $resultado->categoria );
              

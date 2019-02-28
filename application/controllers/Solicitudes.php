@@ -101,8 +101,9 @@ class Solicitudes extends CI_Controller
             $solicitudes_pendientes['pendientes'] = $this->Solicitud_model->cantidad_pendientes($id_usuario);
             $solicitudes_cerradas['cerradas']     = $this->Solicitud_model->cantidad_cerradas($id_usuario);
             $vars['resultados']                   = $this->Solicitud_model->solicitudes_cerradas($id_usuario);
+             //$vars['resultados']  = $this->Solicitud_model->contrataciones_pituto($id_usuario);
             $solicitudes_procesando['procesando'] = $this->Solicitud_model->cantidad_procesando($id_usuario);
-            //print_r($vars);
+            print_r($vars);
             
             //print_r($id_usuario);
             $this->load->view('plantillas/administracion/header');

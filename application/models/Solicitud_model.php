@@ -157,11 +157,6 @@ class Solicitud_model extends CI_Model
         return $query->result();
     }
     
-    
-    
-    
-    
-    
     public function solicitudes_cerradas($id_usuario)
     {
         $query = $this->db->query("select s.id_solicitud,s.categoria,s.tipo_solicitud,s.descripcion_solicitud,s.id_usuario, u.nombres, to_char(s.fecha_registro,'DD-MM-YYY') as fecha_registro, s.estatus

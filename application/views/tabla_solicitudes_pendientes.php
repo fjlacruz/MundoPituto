@@ -227,6 +227,13 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
                          </select>
                            </div>
                         </div>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-2" >Descripci&oacute;n:</label>
+                        <div class="col-sm-8">
+                           <input type="text" name="descripcion_solicitud_edit" id="descripcion_solicitud_edit" class="form-control text-uppercase" placeholder="Breve descripci&oacute;n de su solicitud">
+                        </div>
+                     </div>
                      <div class="form-group">
                         <label class="control-label col-sm-2" >Descripci&oacute;n:</label>
                         <div class="col-sm-8">
@@ -238,7 +245,7 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
                         <label class="control-label col-sm-2" for="email">&nbsp;</label>
                         <div class="col-sm-8">
                            <button type="submit" class="btn bg-navy" onclick="myFunction(1)"><i class="fa fa-save"></i> Guardar</button>
-                           <button type="button" class="btn bg-orange " onclick="myFunction(1)"><i class="fa fa-close">Cancelar</i></button>
+                           <button type="button" class="btn bg-orange " onclick="myFunction(1)"><i class="fa fa-close">Cancelar....</i></button>
                         </div>
                      </div>
                      </br>

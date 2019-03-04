@@ -1,11 +1,49 @@
 <?php
    $variablesSesion = $this->session->userdata('usuario');
    $id_usuario=($variablesSesion['id_usuario']);
+   $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario); 
    if ($variablesSesion == "") {
        redirect('principal/session');
         
    }
    ?>
+
+
+
+
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/froala_editor.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/froala_style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/code_view.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/draggable.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/colors.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/emoticons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/image_manager.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/image.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/line_breaker.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/table.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/char_counter.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/video.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/fullscreen.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/file.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/quick_insert.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/help.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/third_party/spell_checker.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/css/plugins/special_characters.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+  <style>
+      div#editor {
+          width: 81%;
+          margin: auto;
+          text-align: left;
+      }
+
+      .ss {
+        background-color: red;
+      }
+  </style>
+
 
 <style type="text/css">
    .login-container{
@@ -40,22 +78,14 @@
 </style>
 
 <style type="text/css">
-  #scroll {
-     overflow:scroll;
-     height:350px;
-     width:auto;
-}
+   #scroll {
+   overflow:scroll;
+   height:350px;
+   width:auto;
+   }
 </style>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application/recursos/css/tooltip.css" />
-
-<?php
-
-$variablesSesion = $this->session->userdata('usuario');
-$id_usuario=($variablesSesion['id_usuario']);
 
 
-$verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario); 
-?>
 
 
 <script src="<?php echo base_url(); ?>application/scripts/ruta_solicitudes.js"></script>
@@ -76,8 +106,6 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
 
 
 
-
-
 <html>
    <body style="background-color:#F4F7F9;">
       <div id="pendientes">
@@ -87,7 +115,7 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
               <!-- =============== verificamos el perfil para mostrar el menu de navegacion==============  -->
                <div class="col-md-2">
                   <div class="list-group">
-                     <a href="#" class="list-group-item active">Solicitudes Publicadas 
+                     <a href="#" class="list-group-item active">Solicitudes Publicadas
                       <span class="badge badge-primary badge-pill">
                       <?php
                       foreach($pendientes as $resultado)
@@ -143,7 +171,7 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
         <input id="filtrar" type="text" class="form-control" placeholder="Ingrese los datos para la b&uacute;squeda...">
       </div></br>
        <div id="scroll">
-        <div id="tabla"></div>
+        <div id="tabla" style="width: 102%" ></div>
       </div>
             </div>
          </div>
@@ -151,7 +179,7 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
       <div id="editar" style="display:none;" >
          <div class="container login-container" style="width: 99%;>
             <div class="row">
-               <div class="col-md-3">
+               <div class="col-md-2">
                   <div class="list-group">
                      <a href="#" onclick="myFunction(1)" class="list-group-item">Solicitudes Publicadas
                       <span class="badge badge-primary badge-pill">
@@ -234,12 +262,6 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
                            <input type="text" name="descripcion_solicitud_edit" id="descripcion_solicitud_edit" class="form-control text-uppercase" placeholder="Breve descripci&oacute;n de su solicitud">
                         </div>
                      </div>
-                     <div class="form-group">
-                        <label class="control-label col-sm-2" >Descripci&oacute;n:</label>
-                        <div class="col-sm-8">
-                           <input type="text" name="descripcion_solicitud_edit" id="descripcion_solicitud_edit" class="form-control text-uppercase" placeholder="Breve descripci&oacute;n de su solicitud">
-                        </div>
-                     </div>
                      
                      <div class="form-group">
                         <label class="control-label col-sm-2" for="email">&nbsp;</label>
@@ -259,7 +281,7 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
       <div id="generar" style="display:none;">
          <div class="container login-container" style="width: 99%;">
             <div class="row">
-               <div class="col-md-3">
+               <div class="col-md-2">
                   <div class="list-group">
                      <a href="#" onclick="myFunction(1)" class="list-group-item">Solicitudes Publicadas
                       <span class="badge badge-primary badge-pill">
@@ -297,7 +319,7 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
                      <a href="#" class="list-group-item active">Generar Solicitud</a>
                   </div>
                </div>
-               <div class="col-md-9 login-form-1" >
+               <div class="col-md-10 login-form-1" >
                   <form id="formulario2" method="post" class="form-horizontal" action="">
                      <div id="estilo2" align="center">
                         <h3>Generar</h3>
@@ -318,19 +340,34 @@ $verficacion = $this->Consultas_usuarios_model->existe_foto($id_usuario);
                            <div class="form-group">
                          <label class="control-label col-sm-2">Tipo Solicitud:</label>
                            <div class="col-sm-8">
-                            <select name="tipo_solicitud" id="tipo_solicitud"  class="form-control" >
+                            <select name="tipo_solicitud" id="tipo_solicitud"  class="form-control" onchange="cargarTipoSolicitud()">
                               <option value="">Selecione...</option>
                               <option value="COTIZACION">COTIZACI&Oacute;N</option>
                               <option value="URGENCIA">URGENCIA</option>                   
                          </select>
                            </div>
                         </div>
+                     <div id="urgencia" style="display:none">
                      <div class="form-group">
                         <label class="control-label col-sm-2" for="correo_modal">Descripci&oacute;n:</label>
                         <div class="col-sm-8">
-                           <input type="text" name="descripcion_solicitud" id="descripcion_solicitud" class="form-control text-uppercase" placeholder="Breve descripci&oacute;n de su solicitud">
+                               <textarea class="form-control text-uppercase" rows="5" name="descripcion_solicitud" id="descripcion_solicitud" placeholder="Breve descripci&oacute;n de su solicitud"></textarea>
                         </div>
+                        
                      </div>
+                     </div>
+
+                     <div id="cotizacion" style="display:none">
+                      <div class="form-group">
+                        <label class="control-label col-sm-2" >Descripci&oacute;n:</label>
+                        <div class="col-sm-8">
+                         
+                          <textarea id='edit' name="descripcion_cotizacion" rows="15"></textarea>
+                     </div>
+                     </div>
+                   </div>
+
+                     <div class="col-sm-12">&nbsp;</div>
                      <div class="form-group">
                          <label class="control-label col-sm-2">Regi&oacute;n:</label>
                            <div class="col-sm-8">
@@ -427,7 +464,7 @@ $(document).ready(function() {
     $('#formulario2').formValidation({
         fields: {
 
-            id_categoria: {
+            categoria: {
                 row: '.col-sm-8',
                 validators: {
                     notEmpty: {
@@ -451,7 +488,39 @@ $(document).ready(function() {
                     }
                 }
             },
-             descripcion_solicitud: {
+            region_id: {
+                row: '.col-sm-8',
+                validators: {
+                    notEmpty: {
+                        message: 'CAMPO OBLIGATORIO'
+                    }
+                }
+            },
+            provincia_id: {
+                row: '.col-sm-8',
+                validators: {
+                    notEmpty: {
+                        message: 'CAMPO OBLIGATORIO'
+                    }
+                }
+            },
+            comuna_id: {
+                row: '.col-sm-8',
+                validators: {
+                    notEmpty: {
+                        message: 'CAMPO OBLIGATORIO'
+                    }
+                }
+            },
+             descripcion_solicituddd: {
+                row: '.col-sm-8',
+                validators: {
+                    notEmpty: {
+                        message: 'CAMPO OBLIGATORIO'
+                    }
+                }
+            },
+            descripcion_cotizaciondd: {
                 row: '.col-sm-8',
                 validators: {
                     notEmpty: {
@@ -483,5 +552,66 @@ $(document).ready(function() {
 
 
 
+<script type="text/javascript">
+    function cargarTipoSolicitud() {
+        var tipo_solicitud = document.getElementById("tipo_solicitud").value;
+        if (tipo_solicitud == "URGENCIA") {
+            document.getElementById('urgencia').style.display = 'block';
+            document.getElementById('cotizacion').style.display = 'none';
+            
+        } else if (tipo_solicitud == "COTIZACION") {
+            document.getElementById('urgencia').style.display = 'none';
+            document.getElementById('cotizacion').style.display = 'block';
+        
+        } else {
+            document.getElementById('urgencia').style.display = 'none';
+            document.getElementById('cotizacion').style.display = 'none';
+        }
+
+    }
+</script>
 
 
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/froala_editor.min.js" ></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/align.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/char_counter.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/code_beautifier.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/code_view.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/colors.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/draggable.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/emoticons.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/entities.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/file.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/font_size.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/font_family.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/fullscreen.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/image.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/image_manager.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/line_breaker.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/inline_style.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/link.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/lists.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/paragraph_format.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/paragraph_style.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/quick_insert.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/quote.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/table.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/save.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/url.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/video.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/help.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/print.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/third_party/spell_checker.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/special_characters.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.9.3/js/plugins/word_paste.min.js"></script>
+
+<script>
+    $(function(){
+      $('#edit').froalaEditor()
+    });
+  </script>

@@ -33,7 +33,7 @@
 
 <?php if (($variablesSesion['id_perfil'] == 1) ||  ($variablesSesion['id_perfil'] == 2)){ ?>
 <div>
-   <table class="table table-striped" align='justify'>
+   <table class="table table-striped" align='justify' width='100%'>
       <thead>
          <tr >
             <th align="justify">Solicitante</th>

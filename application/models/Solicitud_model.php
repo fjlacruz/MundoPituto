@@ -20,7 +20,16 @@ class Solicitud_model extends CI_Model
             return false;
         }
     }
-    
+    public function cotizacion_guardar($data)
+    {
+        $this->db->insert("t_solicitudes", $data);
+        
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     public function mensaje_guardar($data)
     {

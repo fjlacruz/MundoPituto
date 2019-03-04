@@ -217,8 +217,11 @@ class Solicitudes extends CI_Controller
 
         $array_categoria=$this->input->post('categoria');
         $categoria= '{'.$array_categoria.'}';
-        
-        $arrayData = array(
+
+        $tipo_solicitud=$this->input->post('tipo_solicitud');
+        if($tipo_solicitud==='URGENCIA'){
+            
+            $arrayData = array(
             'id_usuario' => $id_usuario,
             'categoria' => $categoria,
             'region_id' => $region_id,
@@ -229,7 +232,20 @@ class Solicitudes extends CI_Controller
              
         );
         $this->Solicitud_model->solicitud_guardar($arrayData);
-        //$this->Solicitud_model->buscar_pitutos($categoria, $id_solicitud);
+
+        }else{
+            $arrayData = array(
+            'id_usuario' => $id_usuario,
+            'categoria' => $categoria,
+            'region_id' => $region_id,
+            'provincia_id' => $provincia_id,
+            'comuna_id' => $comuna_id,
+            'descripcion_cotizacion' => strtoupper($descripcion_cotizacion),
+            'tipo_solicitud' => $tipo_solicitud
+             
+        );
+        $this->Solicitud_model->cotizacion_guardar($arrayData);
+        }
            
     }
 
